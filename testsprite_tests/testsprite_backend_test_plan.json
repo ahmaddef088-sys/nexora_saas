@@ -1,0 +1,7 @@
+[
+  {
+    "id": "TC001",
+    "title": "post api auth callback credentials login success",
+    "description": "Test the POST /api/auth/callback/credentials endpoint to verify successful user authentication with valid credentials, including session creation and correct user data returned."
+  }
+]

@@ -1,0 +1,1616 @@
+[
+  {
+    "id": "TC001",
+    "title": "Sign in and land in the correct workspace",
+    "description": "This test verifies that a user can log in with workspace credentials and reach the organization dashboard for their tenant.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the organization dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify tenant-specific workspace content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Sign out from the workspace",
+    "description": "This test verifies that a signed-in user can sign out and return to the sign-in page.",
+    "category": "Organization Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Click the sign out control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sign-in page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is no longer displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Use demo autofill to sign in successfully",
+    "description": "This test verifies that a user can use a demo credential helper, submit the form, and reach the organization dashboard.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Use a demo credentials autofill helper"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the organization dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify workspace summary metrics are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Create and progress a sales order",
+    "description": "This test verifies that a user can create a sales order, open its detail view, and move it through the expected status workflow.",
+    "category": "Orders",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the orders list"
+      },
+      {
+        "type": "action",
+        "description": "Start a new order"
+      },
+      {
+        "type": "action",
+        "description": "Select a customer"
+      },
+      {
+        "type": "action",
+        "description": "Add at least one line item"
+      },
+      {
+        "type": "action",
+        "description": "Submit the order form"
+      },
+      {
+        "type": "action",
+        "description": "Open the newly created order detail view"
+      },
+      {
+        "type": "action",
+        "description": "Advance the order status from pending to processing"
+      },
+      {
+        "type": "action",
+        "description": "Advance the order status from processing to completed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the order is displayed in completed status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the order line items are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Create an invoice from the billing list",
+    "description": "This test verifies that a user can create an invoice with a customer, dates, and line items and see it added to the invoice list.",
+    "category": "Invoicing & Billing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the finance invoices module"
+      },
+      {
+        "type": "action",
+        "description": "Open the invoice creation flow"
+      },
+      {
+        "type": "action",
+        "description": "Select a customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid issue date into the issue date field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid due date into the due date field"
+      },
+      {
+        "type": "action",
+        "description": "Add a line item with a valid quantity and price"
+      },
+      {
+        "type": "action",
+        "description": "Submit the invoice"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new invoice is displayed in the invoice list"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Create a new product",
+    "description": "This test verifies that a user can create a product with pricing and stock details and see it added to the catalog.",
+    "category": "Products Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the products catalog"
+      },
+      {
+        "type": "action",
+        "description": "Open the product creation flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the product name field with a unique product name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the SKU field with a unique SKU"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the price field with a valid price"
+      },
+      {
+        "type": "action",
+        "description": "Select a category"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the initial stock field with a valid stock quantity"
+      },
+      {
+        "type": "action",
+        "description": "Submit the product form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new product appears in the catalog"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Create a new order",
+    "description": "This test verifies that a user can create a sales order with a customer and line items and see the new order appear in the list.",
+    "category": "Orders Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the orders module"
+      },
+      {
+        "type": "action",
+        "description": "Start a new order"
+      },
+      {
+        "type": "action",
+        "description": "Select a customer"
+      },
+      {
+        "type": "action",
+        "description": "Add an item with a valid quantity"
+      },
+      {
+        "type": "action",
+        "description": "Submit the order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new order is displayed in the orders list"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Record a new business expense",
+    "description": "A finance user can create an expense with required details and see it added to the expenses list.",
+    "category": "Expenses Tracking",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for a finance user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/finance/expenses"
+      },
+      {
+        "type": "action",
+        "description": "Start recording a new expense"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the payee field with a vendor name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the amount field with a valid expense amount"
+      },
+      {
+        "type": "action",
+        "description": "Select a category for the expense"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a valid date in the date field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the description field with an expense note"
+      },
+      {
+        "type": "action",
+        "description": "Save the expense entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new expense appears in the list"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Create an invoice and review totals",
+    "description": "This test verifies that a user can create an invoice from the invoices page and open it to confirm tax and balance details.",
+    "category": "Finance Invoices",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the invoices list"
+      },
+      {
+        "type": "action",
+        "description": "Start a new invoice"
+      },
+      {
+        "type": "action",
+        "description": "Select a customer"
+      },
+      {
+        "type": "action",
+        "description": "Add at least one invoice line item"
+      },
+      {
+        "type": "action",
+        "description": "Submit the invoice form"
+      },
+      {
+        "type": "action",
+        "description": "Open the newly created invoice detail view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify invoice tax and balance details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the invoice line items are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Send an invoice and mark it paid",
+    "description": "This test verifies that a user can move an invoice through sending and payment completion from the invoice detail view.",
+    "category": "Finance Invoices",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the invoices list"
+      },
+      {
+        "type": "action",
+        "description": "Open an invoice detail view"
+      },
+      {
+        "type": "action",
+        "description": "Send the invoice"
+      },
+      {
+        "type": "action",
+        "description": "Mark the invoice as paid"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the invoice status shows sent"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the invoice status shows paid"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Open a module from the dashboard quick tiles",
+    "description": "This test verifies that a signed-in user can navigate from the dashboard to a module using a quick access tile.",
+    "category": "Organization Dashboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Click a quick navigation tile for a module"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected module page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is no longer displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Filter orders by status",
+    "description": "This test verifies that a user can filter the orders list by status and see only matching orders in the result list.",
+    "category": "Orders Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the orders module"
+      },
+      {
+        "type": "action",
+        "description": "Select a pending status filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only matching orders are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Update product inventory levels",
+    "description": "This test verifies that a user can adjust stock in the inventory view and see the updated stock count.",
+    "category": "Products Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the inventory management view"
+      },
+      {
+        "type": "action",
+        "description": "Select a product to adjust"
+      },
+      {
+        "type": "action",
+        "description": "Update the stock quantity to a valid value"
+      },
+      {
+        "type": "action",
+        "description": "Save the inventory change"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated stock count is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Search and filter the product catalog",
+    "description": "This test verifies that a user can refine the product catalog by searching and applying filters, and see the updated list.",
+    "category": "Products Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the products catalog"
+      },
+      {
+        "type": "action",
+        "description": "Search products by name or SKU"
+      },
+      {
+        "type": "action",
+        "description": "Apply a category or stock status filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the refined product list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Send and pay an invoice",
+    "description": "This test verifies that a user can update an existing invoice through the billing lifecycle and see the revised status in the invoice view.",
+    "category": "Invoicing & Billing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the finance invoices module"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing invoice"
+      },
+      {
+        "type": "action",
+        "description": "Send the invoice"
+      },
+      {
+        "type": "action",
+        "description": "Mark the invoice as paid"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated invoice status is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Advance an order through its workflow",
+    "description": "This test verifies that a user can open an order, review its details, and update its status through the expected workflow.",
+    "category": "Orders Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the orders module"
+      },
+      {
+        "type": "action",
+        "description": "Open an order from the list"
+      },
+      {
+        "type": "action",
+        "description": "Change the order status to processing"
+      },
+      {
+        "type": "action",
+        "description": "Complete the order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated order status is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Add a new customer profile",
+    "description": "This test verifies that a user can create a customer profile and see the new customer appear in the directory.",
+    "category": "Customer Directory",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the customers module"
+      },
+      {
+        "type": "action",
+        "description": "Start adding a customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer name field with Alex Morgan"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer email field with alex.morgan@example.com"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer phone field with a valid phone number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer company field with Northwind Supplies"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer address field with a valid address"
+      },
+      {
+        "type": "action",
+        "description": "Save the customer profile"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new customer is displayed in the directory"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Review invoice totals and status details",
+    "description": "This test verifies that a user can open an invoice detail page and review the tax calculations, balance due, and invoice state.",
+    "category": "Invoicing & Billing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the finance invoices module"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing invoice"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the tax calculation details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the balance due details are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "Search customers in the directory",
+    "description": "This test verifies that a user can search the customer directory and see the matching customer records.",
+    "category": "Customer Directory",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the customers module"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer search field with a customer name or email"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only matching customer records are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC020",
+    "title": "Invite a new team member",
+    "description": "An admin user can invite a teammate by email and role and see the roster updated with the new member entry.",
+    "category": "Team Members & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an admin user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/users"
+      },
+      {
+        "type": "action",
+        "description": "Start inviting a new member"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the member email field with a new teammate email"
+      },
+      {
+        "type": "action",
+        "description": "Select a role for the member"
+      },
+      {
+        "type": "action",
+        "description": "Send the invitation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new roster entry is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC021",
+    "title": "Invite a team member and change their role",
+    "description": "This test verifies that a user can invite a team member from the users page and update the role assignment.",
+    "category": "Team Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the team members page"
+      },
+      {
+        "type": "action",
+        "description": "Start a new user invitation"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the invitee email field with a unique email address"
+      },
+      {
+        "type": "action",
+        "description": "Select a role for the invited user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the invitation"
+      },
+      {
+        "type": "action",
+        "description": "Open the invited user's role controls"
+      },
+      {
+        "type": "action",
+        "description": "Change the user's role"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the invited user appears in the team list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated role is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC022",
+    "title": "Review order details and line items",
+    "description": "This test verifies that a user can open an order detail page and see the order breakdown and line item information.",
+    "category": "Orders Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the orders module"
+      },
+      {
+        "type": "action",
+        "description": "Open an order from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the order breakdown is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the line items are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC023",
+    "title": "Change a team member role",
+    "description": "An admin user can update an existing member's role and see the new permissions reflected in the roster.",
+    "category": "Team Members & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an admin user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/users"
+      },
+      {
+        "type": "action",
+        "description": "Select a team member from the roster"
+      },
+      {
+        "type": "action",
+        "description": "Change the member role"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated role is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC024",
+    "title": "View the business performance dashboard",
+    "description": "A user can open reports and review revenue trends, sales performance, and summary analytics.",
+    "category": "Reports & Analytics",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open reports"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify revenue trend analytics are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify sales performance analytics are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC025",
+    "title": "Show validation errors for empty sign in",
+    "description": "This test verifies that submitting the sign-in form without valid credentials shows validation feedback instead of entering the workspace.",
+    "category": "User Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form with empty credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the organization dashboard is not displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC026",
+    "title": "View expense records by category and date",
+    "description": "A finance user can filter the expenses list and see matching expense records displayed.",
+    "category": "Expenses Tracking",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for a finance user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/finance/expenses"
+      },
+      {
+        "type": "action",
+        "description": "Filter expenses by category"
+      },
+      {
+        "type": "action",
+        "description": "Filter expenses by date range"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching expense records are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC027",
+    "title": "View the team roster and assigned roles",
+    "description": "An admin user can open the users page and review the organization roster with role assignments.",
+    "category": "Team Members & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an admin user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/users"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the team roster is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify assigned roles are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC028",
+    "title": "View the chart of accounts and journal entries",
+    "description": "An accountant can open the general ledger and inspect account balances and journal entry activity.",
+    "category": "General Ledger & Accounting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an accountant user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/finance/ledger"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the chart of accounts is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify journal entry activity is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC029",
+    "title": "Filter ledger entries by account or date",
+    "description": "An accountant can narrow ledger results using account or date filters and see the filtered ledger entries.",
+    "category": "General Ledger & Accounting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an accountant user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/finance/ledger"
+      },
+      {
+        "type": "action",
+        "description": "Filter ledger entries by account"
+      },
+      {
+        "type": "action",
+        "description": "Filter ledger entries by date"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the narrowed ledger entries are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "View a user action in audit history",
+    "description": "This test verifies that a recent team management action appears in the audit trail and can be found through normal browsing.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the audit trail"
+      },
+      {
+        "type": "action",
+        "description": "Search or filter for the recent team management action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the matching audit entry is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audit detail information is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC031",
+    "title": "See validation when required invoice fields are missing",
+    "description": "This test verifies that a user cannot submit an invoice with missing required details and sees validation feedback instead.",
+    "category": "Invoicing & Billing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the finance invoices module"
+      },
+      {
+        "type": "action",
+        "description": "Open the invoice creation flow"
+      },
+      {
+        "type": "action",
+        "description": "Submit the invoice without entering required details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC032",
+    "title": "Review expense details and audit metadata",
+    "description": "A finance user can open an expense detail view and inspect its receipt information and audit metadata.",
+    "category": "Expenses Tracking",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for a finance user"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /acme-corp/finance/expenses"
+      },
+      {
+        "type": "action",
+        "description": "Open an expense from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the expense details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audit metadata is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC033",
+    "title": "See validation for malformed required input",
+    "description": "This test verifies that forms in the workspace reject malformed or missing required values with visible validation feedback.",
+    "category": "Validation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open a form that requires structured input"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form with missing required fields or malformed values"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no new record is created"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC034",
+    "title": "Access the audit trail after signing in",
+    "description": "A user can sign in and reach the audit trail for the current workspace.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the audit trail"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify audit records are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC035",
+    "title": "Search audit events by entity or action",
+    "description": "A user can search the audit trail and see matching records for a specific entity or action.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the audit trail"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a search term into the audit search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching audit records are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC036",
+    "title": "Filter audit activity by date or actor",
+    "description": "A user can narrow the audit log by date or actor and review the filtered activity list.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the audit trail"
+      },
+      {
+        "type": "action",
+        "description": "Select a date filter"
+      },
+      {
+        "type": "action",
+        "description": "Select an actor filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the activity log is filtered"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC037",
+    "title": "Open an audit record and review its details",
+    "description": "A user can open a specific audit event and inspect the recorded mutation details.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the audit trail"
+      },
+      {
+        "type": "action",
+        "description": "Open an audit record"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the audit record details are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC038",
+    "title": "Show an empty audit state when no records match",
+    "description": "A user sees an empty state when the audit filters return no matching events.",
+    "category": "Audit Trail",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the audit trail"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a unique search term into the audit search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is displayed"
+      }
+    ],
+    "priority": "Low"
+  }
+]
