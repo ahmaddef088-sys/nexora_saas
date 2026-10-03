@@ -18,7 +18,10 @@ export default auth((req) => {
 
   // If trying to access protected route while unauthenticated
   if (!isLoggedIn && !isPublic) {
-    const loginUrl = new URL('/login', req.nextUrl.origin);
+    const host = req.headers.get('x-forwarded-host') || req.headers.get('host');
+    const proto = req.headers.get('x-forwarded-proto') || 'https';
+    const baseUrl = host ? `${proto}://${host}` : req.url;
+    const loginUrl = new URL('/login', baseUrl);
     loginUrl.searchParams.set('callbackUrl', req.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
