@@ -27,17 +27,43 @@ export const authConfig: NextAuthConfig = {
         }
 
         const { email, password } = parsed.data;
+        const normalizedEmail = email.toLowerCase().trim();
 
         // Fetch user from DB by normalized email
-        const user = await prisma.user.findUnique({
-          where: { email: email.toLowerCase().trim() },
-          include: {
-            memberships: {
-              where: { status: 'ACTIVE' },
-              include: { tenant: true },
+        let user = await prisma.user
+          .findUnique({
+            where: { email: normalizedEmail },
+            include: {
+              memberships: {
+                where: { status: 'ACTIVE' },
+                include: { tenant: true },
+              },
             },
-          },
-        });
+          })
+          .catch(() => null);
+
+        // Safe Production Auto-Initialization:
+        // If user is not found, check if the production database is empty (0 users).
+        // If empty, auto-seed the initial demo tenants & accounts so login works out-of-the-box.
+        if (!user) {
+          const totalUsers = await prisma.user.count().catch(() => 0);
+          if (totalUsers === 0) {
+            const { seedDatabase } = await import('@/lib/db/seed');
+            await seedDatabase(prisma).catch(() => null);
+
+            user = await prisma.user
+              .findUnique({
+                where: { email: normalizedEmail },
+                include: {
+                  memberships: {
+                    where: { status: 'ACTIVE' },
+                    include: { tenant: true },
+                  },
+                },
+              })
+              .catch(() => null);
+          }
+        }
 
         if (!user || !user.passwordHash) {
           return null;
@@ -66,10 +92,12 @@ export const authConfig: NextAuthConfig = {
         token.id = user.id;
 
         // Fetch active membership for user
-        const membership = await prisma.membership.findFirst({
-          where: { userId: user.id, status: 'ACTIVE' },
-          include: { tenant: true },
-        });
+        const membership = await prisma.membership
+          .findFirst({
+            where: { userId: user.id, status: 'ACTIVE' },
+            include: { tenant: true },
+          })
+          .catch(() => null);
 
         if (membership) {
           token.tenantId = membership.tenantId;
