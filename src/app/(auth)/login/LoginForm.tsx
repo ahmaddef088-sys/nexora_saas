@@ -9,7 +9,8 @@ import { Lock, Mail, AlertCircle, Loader2, KeyRound, Building2 } from 'lucide-re
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/acme-corp';
+  const rawCallback = searchParams.get('callbackUrl') || '/acme-corp';
+  const callbackUrl = rawCallback.startsWith('/') && !rawCallback.startsWith('//') ? rawCallback : '/acme-corp';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,9 +44,8 @@ export function LoginForm() {
         return;
       }
 
-      // Successful login -> Redirect
+      // Successful login -> Redirect to sanitized relative path
       router.push(callbackUrl);
-      router.refresh();
     } catch (err) {
       setError('An unexpected error occurred during sign in. Please try again.');
       setIsLoading(false);

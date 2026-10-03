@@ -20,6 +20,12 @@ export const authEdgeConfig = {
     strategy: 'jwt',
   },
   callbacks: {
+    async redirect({ url }) {
+      if (url.startsWith('/')) {
+        return url;
+      }
+      return url;
+    },
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = (token.id as string) || (token.sub as string);
