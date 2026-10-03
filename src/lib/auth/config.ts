@@ -3,10 +3,16 @@ import Credentials from 'next-auth/providers/credentials';
 import { prisma } from '@/lib/db/prisma';
 import { verifyPassword } from './password';
 import { loginSchema } from '@/lib/validations/auth';
+import { authEdgeConfig } from './auth.config';
 
+/**
+ * Full Auth.js configuration (Node.js runtime only).
+ * Extends the edge-safe base config with the Credentials provider and the
+ * database-backed `jwt` callback. Prisma is only queried inside `authorize`
+ * and `jwt` (i.e. at sign-in request time), never at module import/build time.
+ */
 export const authConfig: NextAuthConfig = {
-  trustHost: true,
-  secret: process.env.NEXTAUTH_SECRET,
+  ...authEdgeConfig,
   providers: [
     Credentials({
       name: 'Credentials',
@@ -53,10 +59,8 @@ export const authConfig: NextAuthConfig = {
       },
     }),
   ],
-  session: {
-    strategy: 'jwt',
-  },
   callbacks: {
+    ...authEdgeConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -78,19 +82,5 @@ export const authConfig: NextAuthConfig = {
       }
       return token;
     },
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = (token.id as string) || (token.sub as string);
-        session.user.tenantId = token.tenantId as string | undefined;
-        session.user.tenantSlug = token.tenantSlug as string | undefined;
-        session.user.role = token.role as any;
-        session.user.organizationId = token.tenantId as string | undefined;
-        session.user.organizationSlug = token.tenantSlug as string | undefined;
-      }
-      return session;
-    },
-  },
-  pages: {
-    signIn: '/login',
   },
 };

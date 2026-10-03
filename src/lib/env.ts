@@ -4,7 +4,10 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().default(3000),
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+  // Auth.js v5 reads AUTH_SECRET; NEXTAUTH_SECRET is supported as a legacy fallback.
+  AUTH_SECRET: z.string().min(1).optional(),
   NEXTAUTH_SECRET: z.string().min(1, 'NEXTAUTH_SECRET is required in production').optional(),
+  AUTH_URL: z.string().url().optional(),
   NEXTAUTH_URL: z.string().url().optional(),
   SEED_DEFAULT_PASSWORD: z.string().optional(),
 });

@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { auth } from '@/lib/auth';
 import { ShieldCheck, ArrowRight, LogIn, LayoutDashboard } from 'lucide-react';
 
+// Session-dependent (reads auth cookies): always render at request time, never at build time.
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const session = await auth();
   const targetTenantSlug = session?.user?.tenantSlug || 'acme-corp';

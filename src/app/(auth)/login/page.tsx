@@ -5,6 +5,9 @@ import { LoginForm } from './LoginForm';
 import { Shield } from 'lucide-react';
 import { Suspense } from 'react';
 
+// Session-dependent (reads auth cookies): always render at request time, never at build time.
+export const dynamic = 'force-dynamic';
+
 export default async function LoginPage() {
   const session = await auth();
 

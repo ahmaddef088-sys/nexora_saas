@@ -1,5 +1,9 @@
-import { auth } from '@/lib/auth';
+import NextAuth from 'next-auth';
 import { NextResponse } from 'next/server';
+import { authEdgeConfig } from '@/lib/auth/auth.config';
+
+// Edge runtime: use the edge-safe config (JWT verification only, no Prisma).
+const { auth } = NextAuth(authEdgeConfig);
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
